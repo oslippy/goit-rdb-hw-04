@@ -9,47 +9,47 @@ a) Назва схеми — `LibraryManagement`
 
 b) Таблиця `authors`:
 
-`author_id (INT, автоматично зростаючий PRIMARY KEY)`
+* `author_id (INT, автоматично зростаючий PRIMARY KEY)`
 
-`author_name (VARCHAR)`
+* `author_name (VARCHAR)`
 
 c) Таблиця `genres`:
 
-`genre_id (INT, автоматично зростаючий PRIMARY KEY)`
+* `genre_id (INT, автоматично зростаючий PRIMARY KEY)`
 
-`genre_name (VARCHAR)`
+* `genre_name (VARCHAR)`
 
 d) Таблиця `books`:
 
-`book_id (INT, автоматично зростаючий PRIMARY KEY)`
+* `book_id (INT, автоматично зростаючий PRIMARY KEY)`
 
-`title (VARCHAR)`
+* `title (VARCHAR)`
 
-`publication_year (YEAR)`
+* `publication_year (YEAR)`
 
-`author_id (INT, FOREIGN KEY зв'язок з "Authors")`
+* `author_id (INT, FOREIGN KEY зв'язок з "Authors")`
 
-`genre_id (INT, FOREIGN KEY зв'язок з "Genres")`
+* `genre_id (INT, FOREIGN KEY зв'язок з "Genres")`
 
 e) Таблиця `users`:
 
-`user_id (INT, автоматично зростаючий PRIMARY KEY)`
+* `user_id (INT, автоматично зростаючий PRIMARY KEY)`
 
-`username (VARCHAR)`
+* `username (VARCHAR)`
 
-`email (VARCHAR)`
+* `email (VARCHAR)`
 
 f) Таблиця `borrowed_books`:
 
-`borrow_id (INT, автоматично зростаючий PRIMARY KEY)`
+* `borrow_id (INT, автоматично зростаючий PRIMARY KEY)`
 
-`book_id (INT, FOREIGN KEY зв'язок з "Books")`
+* `book_id (INT, FOREIGN KEY зв'язок з "Books")`
 
-`user_id (INT, FOREIGN KEY зв'язок з "Users")`
+* `user_id (INT, FOREIGN KEY зв'язок з "Users")`
 
-`borrow_date (DATE)`
+* `borrow_date (DATE)`
 
-`return_date (DATE)`
+* `return_date (DATE)`
 
 ~~~~sql
 CREATE DATABASE IF NOT EXISTS LibraryManagement;
