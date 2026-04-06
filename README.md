@@ -192,4 +192,89 @@ FROM order_details
     - замовлення мало customer_id, якого немає в таблиці customers → INNER відкинув би його, LEFT залишив би з NULL
     - у suppliers був постачальник без жодного продукту → RIGHT JOIN suppliers додав би його рядок з NULL по всіх інших колонках
 
+* На основі запита з пункта 3 виконайте наступне: оберіть тільки ті рядки, де employee_id > 3 та ≤ 10.
+
+~~~~sql
+SELECT *
+FROM order_details
+    INNER JOIN orders ON order_details.order_id = orders.id
+    LEFT JOIN customers ON orders.customer_id = customers.id
+    LEFT JOIN employees ON orders.employee_id = employees.employee_id
+    INNER JOIN shippers ON orders.shipper_id = shippers.id
+    INNER JOIN products ON order_details.product_id = products.id
+    LEFT JOIN categories ON products.category_id = categories.id
+    RIGHT JOIN suppliers ON products.supplier_id = suppliers.id
+WHERE orders.employee_id BETWEEN 4 AND 10;
+~~~~
+
+## [Результат запиту (just click)](https://github.com/oslippy/goit-rdb-hw-04/blob/main/joined_result_where.csv)
+
+* Згрупуйте за іменем категорії, порахуйте кількість рядків у групі, середню кількість товару (кількість товару знаходиться в order_details.quantity)
+
+~~~~sql
+SELECT
+    categories.name AS category_name,
+    COUNT(*) AS total_rows,
+    AVG(order_details.quantity) AS avg_quantity
+FROM order_details
+    INNER JOIN orders ON order_details.order_id = orders.id
+    LEFT  JOIN customers ON orders.customer_id = customers.id
+    LEFT  JOIN employees ON orders.employee_id = employees.employee_id
+    INNER JOIN shippers ON orders.shipper_id = shippers.id
+    INNER JOIN products ON order_details.product_id = products.id
+    LEFT  JOIN categories ON products.category_id = categories.id
+    LEFT  JOIN suppliers ON products.supplier_id = suppliers.id
+GROUP BY categories.name
+ORDER BY total_rows DESC;
+~~~~
+
+![group by](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2020.46.09.png)
+
+* Відфільтруйте рядки, де середня кількість товару більша за 21.
+
+~~~~sql
+SELECT
+    categories.name AS category_name,
+    COUNT(*) AS total_rows,
+    AVG(order_details.quantity) AS avg_quantity
+FROM order_details
+    INNER JOIN orders ON order_details.order_id = orders.id
+    LEFT  JOIN customers ON orders.customer_id = customers.id
+    LEFT  JOIN employees ON orders.employee_id = employees.employee_id
+    INNER JOIN shippers ON orders.shipper_id = shippers.id
+    INNER JOIN products ON order_details.product_id = products.id
+    LEFT  JOIN categories ON products.category_id = categories.id
+    LEFT  JOIN suppliers ON products.supplier_id = suppliers.id
+GROUP BY categories.name
+HAVING avg_quantity > 21
+ORDER BY total_rows DESC;
+~~~~
+
+![group by having](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2020.46.09.png)
+
+* Відсортуйте рядки за спаданням кількості рядків
+
+Я вже це зробив у попередніх запитах `...ORDER BY total_rows DESC`
+
+* Виведіть на екран (оберіть) чотири рядки з пропущеним першим рядком
   
+~~~~sql
+SELECT
+    categories.name AS category_name,
+    COUNT(*) AS total_rows,
+    AVG(order_details.quantity) AS avg_quantity
+FROM order_details
+    INNER JOIN orders ON order_details.order_id = orders.id
+    LEFT  JOIN customers ON orders.customer_id = customers.id
+    LEFT  JOIN employees ON orders.employee_id = employees.employee_id
+    INNER JOIN shippers ON orders.shipper_id = shippers.id
+    INNER JOIN products ON order_details.product_id = products.id
+    LEFT  JOIN categories ON products.category_id = categories.id
+    LEFT  JOIN suppliers ON products.supplier_id = suppliers.id
+GROUP BY categories.name
+HAVING avg_quantity > 21
+ORDER BY total_rows DESC
+LIMIT 4 OFFSET 1;
+~~~~
+
+![limit offset](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2021.04.56.png)
