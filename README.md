@@ -109,3 +109,29 @@ CREATE TABLE borrowed_books (
 ## Створені таблиці
 ![created tables 1](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2019.35.39.png)
 ![created tables 2](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2019.36.23.png)
+
+## 2. Заповніть таблиці простими видуманими тестовими даними. Достатньо одного-двох рядків у кожну таблицю.
+
+~~~~sql
+INSERT INTO authors (author_name) VALUES
+    ('Іван Франко'),
+    ('Ліна Костенко');
+
+INSERT INTO genres (genre_name) VALUES
+    ('Поезія'),
+    ('Роман');
+
+INSERT INTO books (title, publication_year, author_id, genre_id) VALUES
+    ('Захар Беркут', 1882, 1, 2),
+    ('Маруся Чурай', 1979, 2, 2);
+
+INSERT INTO users (username, email) VALUES
+    ('oleksandr_k', 'oleksandr@email.com'),
+    ('maria_v',     'maria@email.com');
+
+INSERT INTO borrowed_books (book_id, user_id, borrow_date, return_date) VALUES
+    (1, 1, '2024-01-10', '2024-01-20'),
+    (2, 2, '2024-02-05', NULL);
+~~~~
+
+
