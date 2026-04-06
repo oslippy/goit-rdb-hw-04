@@ -150,9 +150,7 @@ FROM order_details
     INNER JOIN suppliers ON products.supplier_id = suppliers.id;
 ~~~~
 
-## [Результат запиту](https://github.com/oslippy/goit-rdb-hw-04/blob/main/joined_result.csv)
-[Результат запиту](https://github.com/oslippy/goit-rdb-hw-04/blob/main/joined_result.csv)
-
+## [Результат запиту (just click)](https://github.com/oslippy/goit-rdb-hw-04/blob/main/joined_result.csv)
 
 ## 4. Виконайте запити, перелічені нижче.
 
