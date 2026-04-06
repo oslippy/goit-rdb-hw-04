@@ -151,4 +151,4 @@ FROM order_details
 ~~~~
 
 ## Результат запиту
-![exported data](https://github.com/oslippy/goit-rdb-hw-04/blob/main/joined_result.csv)
+[exported data](https://github.com/oslippy/goit-rdb-hw-04/blob/main/joined_result.csv)
