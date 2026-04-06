@@ -150,5 +150,24 @@ FROM order_details
     INNER JOIN suppliers ON products.supplier_id = suppliers.id;
 ~~~~
 
-## Результат запиту
-[exported data](https://github.com/oslippy/goit-rdb-hw-04/blob/main/joined_result.csv)
+## [Результат запиту](https://github.com/oslippy/goit-rdb-hw-04/blob/main/joined_result.csv)
+[Результат запиту](https://github.com/oslippy/goit-rdb-hw-04/blob/main/joined_result.csv)
+
+
+## 4. Виконайте запити, перелічені нижче.
+
+* Визначте, скільки рядків ви отримали (за допомогою оператора COUNT).
+
+~~~~sql
+SELECT COUNT(*)
+FROM order_details
+    INNER JOIN orders ON order_details.order_id = orders.id
+    INNER JOIN customers ON orders.customer_id = customers.id
+    INNER JOIN employees ON orders.employee_id = employees.employee_id
+    INNER JOIN shippers ON orders.shipper_id = shippers.id
+    INNER JOIN products ON order_details.product_id = products.id
+    INNER JOIN categories ON products.category_id = categories.id
+    INNER JOIN suppliers ON products.supplier_id = suppliers.id;
+~~~~
+
+![count](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2020.18.18.png)
