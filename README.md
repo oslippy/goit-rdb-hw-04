@@ -186,7 +186,9 @@ FROM order_details
 ![count after changed type of join](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2020.18.18.png)
 
 Кількість рядків не змінилась бо дані в CSV (які ми завантажували у БД) чисті та узгоджені — кожен customer_id в orders має відповідний запис у customers, кожен supplier_id у products є в suppliers тощо. Кількість рядків змінилась би, якби, наприклад:
+
     * замовлення мало customer_id, якого немає в таблиці customers → INNER відкинув би його, LEFT залишив би з NULL
+    
     * у suppliers був постачальник без жодного продукту → RIGHT JOIN suppliers додав би його рядок з NULL по всіх інших колонках
 
   
