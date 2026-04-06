@@ -169,3 +169,24 @@ FROM order_details
 ~~~~
 
 ![count](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2020.18.18.png)
+
+* Змініть декілька операторів INNER на LEFT чи RIGHT. Визначте, що відбувається з кількістю рядків. Чому? Напишіть відповідь у текстовому файлі.
+~~~~sql
+SELECT COUNT(*)
+FROM order_details
+    INNER JOIN orders ON order_details.order_id = orders.id
+    LEFT JOIN customers ON orders.customer_id = customers.id
+    LEFT JOIN employees ON orders.employee_id = employees.employee_id
+    INNER JOIN shippers ON orders.shipper_id = shippers.id
+    INNER JOIN products ON order_details.product_id = products.id
+    LEFT JOIN categories ON products.category_id = categories.id
+    RIGHT JOIN suppliers ON products.supplier_id = suppliers.id;
+~~~~
+
+![count after changed type of join](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2020.18.18.png)
+
+Кількість рядків не змінилась бо дані в CSV (які ми завантажували у БД) чисті та узгоджені — кожен customer_id в orders має відповідний запис у customers, кожен supplier_id у products є в suppliers тощо. Кількість рядків змінилась би, якби, наприклад:
+    * замовлення мало customer_id, якого немає в таблиці customers → INNER відкинув би його, LEFT залишив би з NULL
+    * у suppliers був постачальник без жодного продукту → RIGHT JOIN suppliers додав би його рядок з NULL по всіх інших колонках
+
+  
