@@ -110,7 +110,6 @@ CREATE TABLE borrowed_books (
 ![created tables 1](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2019.35.39.png)
 ![created tables 2](https://github.com/oslippy/goit-rdb-hw-04/blob/main/Screenshot%202026-04-06%20at%2019.36.23.png)
 
----
 ## 2. Заповніть таблиці простими видуманими тестовими даними. Достатньо одного-двох рядків у кожну таблицю.
 
 ~~~~sql
